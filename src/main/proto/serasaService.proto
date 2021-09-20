@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+//option java_outer_classname = "SerasaService";
+
+package br.com.zup.edu.carros;
+
+service SerasaService {
+    rpc verificarSituacaoDoCliente(SituacaoDoClienteRequest) returns (SituacaoDoClienteResponse) {}
+}
+
+message SituacaoDoClienteRequest {
+    string cpf = 1;
+}
+
+message SituacaoDoClienteResponse {
+    enum Situacao {
+        DESCONHECIDA = 0;
+        REGULAR      = 1;
+        IRREGULAR    = 2;
+    }
+
+    Situacao situacao = 1;
+}

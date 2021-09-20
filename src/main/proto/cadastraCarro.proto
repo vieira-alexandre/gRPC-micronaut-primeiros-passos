@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+//option java_outer_classname = "CarroService";
+
+package br.com.zup.edu.carros;
+
+import "google/protobuf/timestamp.proto";
+
+service CarroService {
+    rpc cadastra(CarroRequest) returns (CarroResponse);
+}
+
+enum Combustivel {
+    DESCONHECIDO = 0;
+    GASOLINA = 1;
+    ALCOOL = 2;
+    FLEX = 3;
+}
+
+
+message Proprietario {
+    string nome = 1;
+    string cpf = 2;
+}
+
+message CarroRequest {
+    string modelo = 1;
+    string placa = 2;
+    int32 ano = 3;
+    Proprietario proprietario = 4;
+    Combustivel combustivel = 5;
+}
+
+message CarroResponse {
+    int64 id = 1;
+    google.protobuf.Timestamp criadoEm = 2;
+}
